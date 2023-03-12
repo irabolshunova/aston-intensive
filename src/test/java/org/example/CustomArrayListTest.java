@@ -65,3 +65,4 @@ class CustomArrayListTest {
         assertEquals("[Alice, Bravo, Charlie, Delta, Echo]", customArrayList.toString());
     }
 }
+
