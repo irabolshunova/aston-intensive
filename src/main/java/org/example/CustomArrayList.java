@@ -139,8 +139,8 @@ public class CustomArrayList<T extends Object> {
      * @param i – индекс первого элемента для замены
      * @param j – индекс второго элемента для замены
      */
-    private static <T> void swap(Object[] array, int i, int j) {
-        T temp = (T) array[i];
+    private static void swap(Object[] array, int i, int j) {
+        Object temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
