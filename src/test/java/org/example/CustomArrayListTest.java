@@ -22,6 +22,25 @@ class CustomArrayListTest {
     }
 
     @Test
+    void add_shouldAddElementByIndexToFullList() {
+        customArrayList.add("Element 1");
+        customArrayList.add("Element 2");
+        customArrayList.add("Element 3");
+        customArrayList.add("Element 4");
+        customArrayList.add("Element 5");
+        customArrayList.add("Element 6");
+        customArrayList.add("Element 7");
+        customArrayList.add("Element 8");
+        customArrayList.add("Element 9");
+        customArrayList.add("Element 10");
+
+        customArrayList.add(5, "Element");
+        assertEquals("Element", customArrayList.get(5));
+        assertEquals("Element 6", customArrayList.get(6));
+        assertEquals(11, customArrayList.size());
+    }
+
+    @Test
     void get_shouldReturnElementAtIndex() {
         customArrayList.add("Element 1");
         customArrayList.add("Element 2");

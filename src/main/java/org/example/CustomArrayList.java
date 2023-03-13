@@ -20,17 +20,42 @@ public class CustomArrayList<T extends Object> {
 
     /**
      * Добавляет новый элемент в массив.
-     * Увеличивает размер массива в 2 раза, если массив заполнен.
+     * Если массив заполнен, увеличивает размер массива в 2 раза с помощью метода grow().
      *
      * @param element – элемент, добавляемый в массив.
      */
     public void add(T element) {
         if (size == elements.length) {
-            Object[] newElements = new Object[size * 2];
-            System.arraycopy(elements, 0, newElements, 0, size);
-            elements = (T[]) newElements;
+            grow();
         }
         elements[size++] = element;
+    }
+
+    /**
+     * Добавляет элемент в массив по указанному индексу.
+     * Если массив заполнен, увеличивает размер массива в 2 раза с помощью метода grow().
+     * Чтобы освободить место для нового элемента, сдвигает все элементы с указанного индекса вправо на 1 ячейку.
+     *
+     * @param index   – индекс ячейки, куда должен быть добавлен новый элемент.
+     * @param element – элемент, добавляемый в массив по индексу.
+     */
+    public void add(int index, T element) {
+        if (size == elements.length) {
+            grow();
+        }
+        System.arraycopy(elements, index, elements, index + 1, size - index + 1);
+        elements[index] = element;
+        size++;
+    }
+
+    /**
+     * Увеличивает размер внутреннего массива, удваивая его емкость.
+     * Копирует существующие элементы в новый массив.
+     */
+    private void grow() {
+        Object[] newElements = new Object[size * 2];
+        System.arraycopy(elements, 0, newElements, 0, size);
+        elements = (T[]) newElements;
     }
 
     /**
@@ -94,8 +119,8 @@ public class CustomArrayList<T extends Object> {
      * Использует вспомогательный метод, чтобы определить точку опоры pivot.
      * Рекурсивно выполняется для двух половин массива.
      *
-     * @param array – массив для быстрой сортировки
-     * @param leftIndex – начальный индекс интервала элементов для сортировки
+     * @param array      – массив для быстрой сортировки
+     * @param leftIndex  – начальный индекс интервала элементов для сортировки
      * @param rightIndex – конечный индекс интервала элементов для сортировки
      */
     private static void quickSortHelper(Object[] array, int leftIndex, int rightIndex) {
@@ -114,8 +139,8 @@ public class CustomArrayList<T extends Object> {
      * Элементы, меньшие или равные опорной точке, перемещаются влево от опорной точки,
      * Элементы, превышающие опорную точку, перемещаются вправо.
      *
-     * @param array – массив для быстрой сортировки
-     * @param leftIndex – начальный индекс интервала элементов для сортировки
+     * @param array      – массив для быстрой сортировки
+     * @param leftIndex  – начальный индекс интервала элементов для сортировки
      * @param rightIndex – конечный индекс интервала элементов для сортировки
      * @return индекс опорного элемента
      */
@@ -136,8 +161,8 @@ public class CustomArrayList<T extends Object> {
      * Меняет местами два элемента в массиве.
      *
      * @param array – массив, содержащий элементы для замены
-     * @param i – индекс первого элемента для замены
-     * @param j – индекс второго элемента для замены
+     * @param i     – индекс первого элемента для замены
+     * @param j     – индекс второго элемента для замены
      */
     private static void swap(Object[] array, int i, int j) {
         Object temp = array[i];
