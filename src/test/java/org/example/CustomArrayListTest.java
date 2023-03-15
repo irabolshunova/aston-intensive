@@ -40,6 +40,18 @@ class CustomArrayListTest {
         assertEquals(11, customArrayList.size());
     }
 
+
+    @Test
+    void add_shouldAddElementInFirstBucket() {
+        int serialNumber = 1;
+        for (int i = 0; i < 1000; i++) {
+            customArrayList.add(0, "String " + serialNumber);
+        }
+        assertEquals(1000, customArrayList.size());
+        assertEquals("String " + serialNumber, customArrayList.get(0));
+        assertEquals("String " + 1, customArrayList.get(999));
+    }
+
     @Test
     void get_shouldReturnElementAtIndex() {
         customArrayList.add("Element 1");

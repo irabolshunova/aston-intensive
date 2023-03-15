@@ -43,7 +43,7 @@ public class CustomArrayList<T extends Object> {
         if (size == elements.length) {
             grow();
         }
-        System.arraycopy(elements, index, elements, index + 1, size - index + 1);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
         elements[index] = element;
         size++;
     }
@@ -65,6 +65,7 @@ public class CustomArrayList<T extends Object> {
      * @return полученный по индексу объект
      */
     public Object get(int index) {
+
         return elements[index];
     }
 
@@ -96,6 +97,7 @@ public class CustomArrayList<T extends Object> {
      * @return количество хранимых элементов.
      */
     public int size() {
+
         return size;
     }
 
